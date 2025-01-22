@@ -8,6 +8,6 @@
 
 3) Utilizei o script "Graficos_por_especie_patogenica.R" para gerar os gráficos de barra por amostra.
    
-5) Utilizei o script "heatmap_filogenia.ipynb" para gerar o dendograma
+5) Utilizei o script "heatmap.ipynb" para gerar o dendograma
 
 
