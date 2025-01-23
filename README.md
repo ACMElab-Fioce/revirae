@@ -15,21 +15,50 @@ Certifique-se de ter os seguintes itens instalados antes de executar os scripts:
 
 ## Instruções 
 
-## 1.Análises de Resistência Antiicrobiana  
+## 1.Análises de Qualidade
+### Passo 1: Download do Arquivo
+Faça o download do arquivo `Sample Overview (sample QC metrics)` a partir do **CZID**.
+
+### Passo 2: Execute o arquivo Numero_reads.R
+Será gerado como resultado um gráfico com o número total de reads e o número que passou pelo filtro de qualidade.
+
+---
+
+## 2.Organismos detectados
+### Passo 1: Download do Arquivo 
+Faça o download do arquivo `Combined Sample Taxon Results (NT r total reads)` a partir do **CZID**.
+
+### Passo 2: Execute o arquivo 01_top-generation.R com as devidas alterações
+Ao final da execução, será gerado o arquivo `new_output.csv`, utilizado nas próximas etapas.
+
+### Passo 3: Execute o arquivo 02_pieplot_relatorio.R com as devidas alterações
+Ao final da execução, serão gerados gráficos para cada uma das amostras analisadas.
+
+### Passo 4: Edições no Arquivo
+Faça as alterações necessárias no arquivo `new_output.csv` para incluir informações de tempo, estado, local, protocolo...
+
+### Passo 5: Execute o arquivo 03_graficos_por_especie_patogenica.R com as devidas alterações
+
+
+---
+
+## 3.Análises de Resistência Antiicrobiana  
 ### Passo 1: Download do Arquivo  
-Faça o download do arquivo `combined_amr_results.csv` a partir do **CZID**. Este arquivo será utilizado como base para as análises.  
+Faça o download do arquivo `combined_amr_results.csv` a partir do **CZID**.
 
 ### Passo 2: Organização das Colunas  
-Use o script `01_organizador.R` para reorganizar as colunas que contêm múltiplos valores. Por exemplo, a coluna **`drug_class`** será separada para melhor análise.  
+Use o script `01_organizador.R` para reorganizar as colunas que contêm múltiplos valores, gerando como resultado o arquivo **`drug_class.csv`**.  
 
-### Passo 3: Ajuste de Espaçamentos  
-No arquivo CSV, a coluna **`drug_class`** pode conter espaçamentos desnecessários no início de alguns valores. Utilize a fórmula abaixo em seu editor de planilhas para corrigir:  
-
+### Passo 3: Edições no Arquivo
+Faça as alterações necessárias no arquivo `drug_class.csv` para incluir informações de tempo, estado, local, protocolo...
+O arquivo pode conter espaçamentos desnecessários no início de alguns valores. Utilize a fórmula abaixo em seu editor de planilhas para corrigir:  
 ```excel  
 =SE(ESQUERDA(A1;1)=" ";DIREITA(A1;NÚM.CARACT(A1)-1);A1)  
 ```  
-
 Certifique-se de salvar o arquivo corrigido para as etapas seguintes.  
+
+
+
 
 ### Passo 4: Geração do Dendrograma  
 Execute o script `02_heatmap.ipynb` para criar o dendrograma com base nos dados processados.  
